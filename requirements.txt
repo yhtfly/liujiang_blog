@@ -1,4 +1,14 @@
-Django==1.11.3
-Pillow==2.8.1
-PyMySQL==0.8.0
-pytz==2020.4
+Package                 Version
+----------------------- -------
+-ip                     20.2.4
+Django                  1.11.3
+django-contrib-comments 1.9.2
+Markdown                2.6.11
+Pillow                  2.8.1
+pip                     20.3.1
+Pygments                2.2.0
+PyMySQL                 0.8.0
+pytz                    2020.4
+setuptools              50.3.2
+six                     1.15.0
+wheel                   0.35.1

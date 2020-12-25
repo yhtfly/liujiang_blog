@@ -1,9 +1,11 @@
-from django.shortcuts import render,get_object_or_404
+from django.shortcuts import render,get_object_or_404,redirect
 from . import models
 import markdown,pygments
 from django_comments.models import Comment
 from django.core.paginator import Paginator,EmptyPage,PageNotAnInteger
 from django.db.models import Q
+
+from django_comments import models as comment_models
 # Create your views here.
 
 def make_paginator(objects,page,num=5):
@@ -159,6 +161,8 @@ def detail(request,blog_id):
 
     get_comment_list(top_comments)
 
+    print(comment_list)
+
     return render(request,'blog/detail.html',locals())
 
 
@@ -215,4 +219,11 @@ def page_not_found(request):
 
 def page_error(request):
     return render(request,'blog/500.html',locals())
+
+
+def reply(request,comment_id):
+    if not request.session.get('login',None) and not request.user.is_authenticated():
+        return redirect('/')
+    parent_comment = get_object_or_404(comment_models.Comment,id=comment_id)
+    return render(request,'blog/reply.html',locals())
 
